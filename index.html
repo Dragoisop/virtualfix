@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency - Web, Design & Video</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#FFCC00'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .gradient-bg {
+            background: radial-gradient(1200px 600px at 20% 10%, rgba(255, 204, 0, 0.15), transparent 60%),
+                        radial-gradient(1000px 500px at 80% 30%, rgba(255, 204, 0, 0.08), transparent 60%),
+                        linear-gradient(180deg, #0b0b0b 0%, #111111 50%, #0b0b0b 100%);
+        }
+        .glass-effect {
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .text-brand { color: #FFCC00; }
+        .bg-brand { background-color: #FFCC00; }
+        .border-brand { border-color: #FFCC00; }
+        .ring-brand { --tw-ring-color: #FFCC00; }
+        /* Grid background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 204, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 204, 0, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Hide grid on footer */
+        footer ~ .grid-bg,
+        footer .grid-bg {
+            display: none;
+        }
+        
+        /* Mobile optimization for grid */
+        @media (max-width: 768px) {
+            .grid-bg {
+                background-size: 30px 30px;
+                opacity: 0.5;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .grid-bg {
+                background-size: 25px 25px;
+                opacity: 0.3;
+            }
+        }
+        
+        /* Animated triangles */
+        .triangle {
+            position: fixed;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 35px solid #FFCC00;
+            opacity: 0.08;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .triangle-small {
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 20px solid #FFCC00;
+        }
+        .triangle-large {
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid #FFCC00;
+        }
+        .triangle-1 { top: 10%; left: 5%; animation: rotate 8s linear infinite; }
+        .triangle-2 { top: 20%; left: 85%; animation: rotate 12s linear infinite reverse; }
+        .triangle-3 { top: 30%; left: 15%; animation: rotate 10s linear infinite; }
+        .triangle-4 { top: 40%; left: 75%; animation: rotate 15s linear infinite reverse; }
+        .triangle-5 { top: 50%; left: 25%; animation: rotate 6s linear infinite; }
+        .triangle-6 { top: 60%; left: 85%; animation: rotate 9s linear infinite reverse; }
+        .triangle-7 { top: 70%; left: 10%; animation: rotate 11s linear infinite; }
+        .triangle-8 { top: 80%; left: 80%; animation: rotate 13s linear infinite reverse; }
+        .triangle-9 { top: 25%; left: 20%; animation: rotate 7s linear infinite; }
+        .triangle-10 { top: 75%; left: 70%; animation: rotate 14s linear infinite reverse; }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Glass wipe effect for cards */
+        .card-glass-wipe {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-glass-wipe::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: left 0.6s ease-in-out;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .card-glass-wipe:hover::before {
+            left: 100%;
+        }
+        
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scale(1);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255, 204, 0, 0.2);
+        }
+        
+        /* Enhanced card hover for services section */
+        #services .card-hover {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backface-visibility: hidden;
+        }
+        
+        #services .card-hover:hover {
+            transform: translateY(-12px) scale(1.08);
+            box-shadow: 0 30px 60px rgba(255, 204, 0, 0.25);
+        }
+        
+        /* Enhanced card hover for projects section */
+        #portfolio .card-hover {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backface-visibility: hidden;
+        }
+        
+        #portfolio .card-hover:hover {
+            transform: translateY(-12px) scale(1.08);
+            box-shadow: 0 30px 60px rgba(255, 204, 0, 0.25);
+        }
+        
+        /* Project card wrapper enhancement */
+        .project-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.08);
+        }
+        
+        /* Language icons animation */
+        .language-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .language-icon:nth-child(1) { animation-delay: 0s; }
+        .language-icon:nth-child(2) { animation-delay: 0.3s; }
+        .language-icon:nth-child(3) { animation-delay: 0.6s; }
+        .language-icon:nth-child(4) { animation-delay: 0.9s; }
+        .language-icon:nth-child(5) { animation-delay: 1.2s; }
+        .language-icon:nth-child(6) { animation-delay: 1.5s; }
+        .language-icon:nth-child(7) { animation-delay: 1.8s; }
+        .language-icon:nth-child(8) { animation-delay: 2.1s; }
+        .language-icon:nth-child(9) { animation-delay: 2.4s; }
+        .language-icon:nth-child(10) { animation-delay: 2.7s; }
+        .language-icon:nth-child(11) { animation-delay: 3s; }
+        .language-icon:nth-child(12) { animation-delay: 3.3s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+    <!-- Grid background -->
+    <div class="grid-bg"></div>
+    <!-- Animated background triangles -->
+    <div class="triangle triangle-1"></div>
+    <div class="triangle triangle-2"></div>
+    <div class="triangle triangle-3"></div>
+    <div class="triangle triangle-4"></div>
+    <div class="triangle triangle-5"></div>
+    <div class="triangle triangle-6"></div>
+    <div class="triangle triangle-7"></div>
+    <div class="triangle triangle-8"></div>
+    <div class="triangle triangle-9"></div>
+    <div class="triangle triangle-10"></div>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                                         <span class="inline-flex items-center justify-center w-9 h-9 rounded bg-brand text-gray-900 font-bold">V</span>
+                    <div class="text-2xl font-bold"><span class="text-white">Virtual</span><span class="text-brand">Fix</span></div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link hover:text-brand transition-colors">Home</a>
+                        <a href="#services" class="nav-link hover:text-brand transition-colors">Services</a>
+                                                 <a href="#portfolio" class="nav-link hover:text-brand transition-colors">Projects</a>
+                        <a href="#pricing" class="nav-link hover:text-brand transition-colors">Pricing</a>
+                        <a href="#contact" class="nav-link hover:text-brand transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-brand" aria-label="Open menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-effect">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 hover:text-brand transition-colors">Home</a>
+                <a href="#services" class="block px-3 py-2 hover:text-brand transition-colors">Services</a>
+                                 <a href="#portfolio" class="block px-3 py-2 hover:text-brand transition-colors">Projects</a>
+                <a href="#pricing" class="block px-3 py-2 hover:text-brand transition-colors">Pricing</a>
+                <a href="#contact" class="block px-3 py-2 hover:text-brand transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="relative z-10 text-center px-4">
+            <div class="animate-fade-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    VIRTUALFIX
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-2xl mx-auto">
+                    Your brand deserves more than templates. We build digital originals
+                </p>
+                <div class="space-x-4">
+                    <a href="#services" class="bg-brand text-gray-900 px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-colors inline-block">
+                        Our Services
+                    </a>
+                    <a href="#contact" class="border-2 border-brand text-brand px-8 py-3 rounded-full font-semibold hover:bg-brand hover:text-gray-900 transition-colors inline-block">
+                        Get a Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+            <i class="fas fa-chevron-down text-2xl text-white"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-black">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    Our <span class="text-brand">Services</span>
+                </h2>
+                <div class="w-24 h-1 bg-brand mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Strategy, design and production under one roof to move your brand forward.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-[#1e1e1e] rounded-xl p-8 hover:bg-[#1e1e1e] transition-colors border border-gray-700 card-glass-wipe card-hover">
+                    <div class="w-14 h-14 rounded-lg bg-brand text-gray-900 flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-2xl"></i>
+                            </div>
+                    <h3 class="text-xl font-semibold mb-3">Web Development</h3>
+                    <p class="text-gray-400 mb-6">High-performance websites, landing pages and web apps optimized for conversions and SEO.</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-check text-brand mr-2"></i>Custom websites & CMS</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Responsive & accessible</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Performance optimized</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>SEO optimization</li>
+                    </ul>
+                </div>
+                <div class="bg-[#1e1e1e] rounded-xl p-8 hover:bg-[#1e1e1e] transition-colors border border-gray-700 card-glass-wipe card-hover">
+                    <div class="w-14 h-14 rounded-lg bg-brand text-gray-900 flex items-center justify-center mb-6">
+                        <i class="fas fa-palette text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Graphic Design</h3>
+                    <p class="text-gray-400 mb-6">Brand identities, social media kits and marketing assets that look premium and on-brand.</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-check text-brand mr-2"></i>Logos & brand systems</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Social media creatives</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Pitch decks & print</li>
+                    </ul>
+                </div>
+                <div class="bg-[#1e1e1e] rounded-xl p-8 hover:bg-[#1e1e1e] transition-colors border border-gray-700 card-glass-wipe card-hover">
+                    <div class="w-14 h-14 rounded-lg bg-brand text-gray-900 flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Video Editing</h3>
+                    <p class="text-gray-400 mb-6">Social-first edits, ads and explainers with slick motion graphics and sound design.</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-check text-brand mr-2"></i>Short-form & reels</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Ads & promos</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Animation & captions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-black">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Simple <span class="text-brand">Pricing</span></h2>
+                <div class="w-24 h-1 bg-brand mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Start small and scale when you need more firepower.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="rounded-2xl border border-gray-700 bg-[#1e1e1e] p-8 card-glass-wipe card-hover">
+                    <h3 class="text-xl font-semibold mb-2">Starter</h3>
+                    <p class="text-gray-400 mb-6">Best for MVPs and small projects</p>
+                    <p class="text-4xl font-bold mb-6"><span class="text-brand">$499</span></p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-check text-brand mr-2"></i>1-page website</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Basic brand kit</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>7-day delivery</li>
+                    </ul>
+                </div>
+                <div class="rounded-2xl border-2 border-brand bg-[#222222] p-8 relative card-glass-wipe card-hover" style="padding-top: 2rem;">
+                    <span class="absolute -top-2 right-6 bg-brand text-gray-900 text-xs font-bold px-3 py-1 rounded-full z-10">Popular</span>
+                    <h3 class="text-xl font-semibold mb-2">Growth</h3>
+                    <p class="text-gray-400 mb-6">For growing brands and shops</p>
+                    <p class="text-4xl font-bold mb-6"><span class="text-brand">$1499</span></p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-check text-brand mr-2"></i>Multi-page website</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Brand identity pack</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>1 promo video</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>SEO optimization</li>
+                    </ul>
+                </div>
+                <div class="rounded-2xl border border-gray-700 bg-[#1e1e1e] p-8 card-glass-wipe card-hover">
+                    <h3 class="text-xl font-semibold mb-2">Custom</h3>
+                    <p class="text-gray-400 mb-6">Tailored to your goals</p>
+                    <p class="text-4xl font-bold mb-6"><span class="text-brand">Let's talk</span></p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-check text-brand mr-2"></i>Complex web apps</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Design retainers</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Full video production</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+         <!-- Projects Section -->
+     <section id="portfolio" class="py-20 bg-black">
+         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="text-center mb-16">
+                 <h2 class="text-4xl font-bold mb-4">Selected <span class="text-brand">Projects</span></h2>
+                <div class="w-24 h-1 bg-brand mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card group">
+                    <div class="bg-[#1e1e1e] rounded-lg overflow-hidden shadow-lg card-glass-wipe card-hover">
+                        <div class="h-48 bg-gradient-to-br from-zinc-800 to-black flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-6xl text-brand"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">E-Commerce Site Redesign</h3>
+                            <p class="text-gray-300 mb-4">Modern storefront with 34% conversion uplift and blazing performance.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Next.js</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Tailwind</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Stripe</span>
+                            </div>
+                            <a href="#" class="text-brand hover:opacity-80 transition-colors"><i class="fas fa-external-link-alt"></i> View</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card group">
+                    <div class="bg-[#1e1e1e] rounded-lg overflow-hidden shadow-lg card-glass-wipe card-hover">
+                        <div class="h-48 bg-gradient-to-br from-zinc-800 to-black flex items-center justify-center">
+                            <i class="fas fa-palette text-6xl text-brand"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Brand Identity Pack</h3>
+                            <p class="text-gray-300 mb-4">Logo, typography, social kit and launch creatives for fintech startup.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Branding</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Figma</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Illustrator</span>
+                            </div>
+                            <a href="#" class="text-brand hover:opacity-80 transition-colors"><i class="fas fa-external-link-alt"></i> View</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card group">
+                    <div class="bg-[#1e1e1e] rounded-lg overflow-hidden shadow-lg card-glass-wipe card-hover">
+                        <div class="h-48 bg-gradient-to-br from-zinc-800 to-black flex items-center justify-center">
+                            <i class="fas fa-video text-6xl text-brand"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Product Launch Video</h3>
+                            <p class="text-gray-300 mb-4">30s ad with motion graphics, captions and SFX for paid social.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">After Effects</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Premiere Pro</span>
+                            </div>
+                            <a href="#" class="text-brand hover:opacity-80 transition-colors"><i class="fas fa-external-link-alt"></i> View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         </section>
+
+     <!-- Language Icons Section -->
+     <section class="py-16 bg-black">
+         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="text-center mb-12">
+                 <h2 class="text-3xl font-bold mb-4">Technologies We <span class="text-brand">Master</span></h2>
+                 <div class="w-24 h-1 bg-brand mx-auto"></div>
+             </div>
+             <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                 <div class="language-icon text-center">
+                     <i class="fab fa-html5 text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">HTML5</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-css3-alt text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">CSS3</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-js text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">JavaScript</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-react text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">React</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-node-js text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">Node.js</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-python text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">Python</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-php text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">PHP</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-wordpress text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">WordPress</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-git-alt text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">Git</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-docker text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">Docker</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-aws text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">AWS</p>
+                 </div>
+                 <div class="language-icon text-center">
+                     <i class="fab fa-figma text-4xl text-brand mb-2"></i>
+                     <p class="text-sm text-gray-400">Figma</p>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+     <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    Get <span class="text-brand">In Touch</span>
+                </h2>
+                <div class="w-24 h-1 bg-brand mx-auto"></div>
+                <p class="text-gray-300 text-lg mt-4">Let's work together on your next project</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-brand">Contact Information</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-gray-900">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Email</p>
+                                <p class="text-gray-300">hello@example.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-gray-900">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Phone</p>
+                                <p class="text-gray-300">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-gray-900">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Location</p>
+                                <p class="text-gray-300">San Francisco, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="text-lg font-semibold mb-4 text-brand">Follow</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" aria-label="LinkedIn" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-brand hover:text-gray-900 transition-colors">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" aria-label="Instagram" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-brand hover:text-gray-900 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand text-gray-900 py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.01]">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+         <!-- Footer -->
+     <footer class="bg-black border-t border-gray-800 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <div class="flex items-center space-x-2">
+                                 <span class="inline-flex items-center justify-center w-8 h-8 rounded bg-brand text-gray-900 font-bold">V</span>
+                                 <span class="font-semibold">VirtualFix</span>
+            </div>
+                         <p class="text-gray-400">&copy; 2024 VirtualFix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
