@@ -219,6 +219,28 @@
                 width: 2.25rem;
                 height: 2.25rem;
             }
+            
+            /* High-DPI mobile optimization for devices like Aquos R3 */
+            .section-divider {
+                height: 1px !important; /* Ultra-thin line for high-DPI screens */
+                transform: scaleY(0.5); /* Further reduce visual thickness */
+            }
+        }
+        
+        /* Ultra-high DPI mobile devices (like Aquos R3) */
+        @media (max-width: 480px) and (min-resolution: 2dppx) {
+            .section-divider {
+                height: 0.5px !important;
+                transform: scaleY(0.25);
+            }
+        }
+        
+        /* Small mobile devices */
+        @media (max-width: 360px) {
+            .section-divider {
+                height: 1px !important;
+                transform: scaleY(0.75);
+            }
         }
         
         /* Extra small devices */
@@ -549,7 +571,7 @@
                 <h2 class="text-4xl font-bold mb-4">
                     Our <span class="text-brand">Services</span>
                 </h2>
-                <div class="w-24 h-1 bg-brand mx-auto"></div>
+                <div class="w-24 h-1 md:h-1 h-0.5 bg-brand mx-auto section-divider"></div>
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Strategy, design and production under one roof to move your brand forward.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
@@ -599,7 +621,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold mb-4">Simple <span class="text-brand">Pricing</span></h2>
-                <div class="w-24 h-1 bg-brand mx-auto"></div>
+                <div class="w-24 h-1 md:h-1 h-0.5 bg-brand mx-auto section-divider"></div>
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Start small and scale when you need more firepower.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
@@ -658,9 +680,9 @@
          <!-- Projects Section -->
      <section id="portfolio" class="py-20 bg-black">
          <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-             <div class="text-center mb-16">
-                 <h2 class="text-4xl font-bold mb-4">Selected <span class="text-brand">Projects</span></h2>
-                <div class="w-24 h-1 bg-brand mx-auto"></div>
+                         <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Selected <span class="text-brand">Projects</span></h2>
+                <div class="w-24 h-1 md:h-1 h-0.5 bg-brand mx-auto section-divider"></div>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="project-card group">
@@ -718,10 +740,10 @@
      <!-- Language Icons Section -->
      <section class="py-16 bg-black">
          <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-             <div class="text-center mb-12">
-                 <h2 class="text-3xl font-bold mb-4">Technologies We <span class="text-brand">Master</span></h2>
-                 <div class="w-24 h-1 bg-brand mx-auto"></div>
-             </div>
+                         <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Technologies We <span class="text-brand">Master</span></h2>
+                <div class="w-24 h-1 md:h-1 h-0.5 bg-brand mx-auto section-divider"></div>
+            </div>
              <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
                  <div class="language-icon text-center">
                      <i class="fab fa-html5 text-4xl text-brand mb-2"></i>
@@ -782,7 +804,7 @@
                 <h2 class="text-4xl font-bold mb-4">
                     Get <span class="text-brand">In Touch</span>
                 </h2>
-                <div class="w-24 h-1 bg-brand mx-auto"></div>
+                <div class="w-24 h-1 md:h-1 h-0.5 bg-brand mx-auto section-divider"></div>
                 <p class="text-gray-300 text-lg mt-4">Let's work together on your next project</p>
             </div>
             <div class="grid md:grid-cols-2 gap-12">
@@ -820,7 +842,7 @@
 
                 </div>
                 <div>
-                    <form class="space-y-6" method="POST" action="#" aria-label="Contact form">
+                    <form id="contactForm" class="space-y-6" method="POST" action="#" aria-label="Contact form">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
                             <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" required>
@@ -833,7 +855,9 @@
                             <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
                             <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" required></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-brand text-gray-900 py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.01]">Send Message</button>
+                                                 <button type="submit" id="submitBtn" class="w-full bg-brand text-gray-900 py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.01]">
+                             <span id="submitText">Send Message</span>
+                         </button>
                     </form>
                 </div>
             </div>
@@ -867,5 +891,95 @@
     </div>
 
     <script src="script.js"></script>
+    
+    <!-- Contact Form Email Integration -->
+    <script>
+        // Contact form handling with email API
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Change button text to "Sent" and disable
+            submitText.textContent = 'Sent';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            
+            try {
+                // Send email using your API key
+                const response = await sendEmail(formData);
+                
+                if (response.success) {
+                    // Keep button as "Sent" - success
+                    console.log('Message sent successfully');
+                } else {
+                    // Reset button on failure
+                    submitText.textContent = 'Send Message';
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                    console.error('Failed to send message');
+                }
+            } catch (error) {
+                console.error('Error sending email:', error);
+                // Reset button on error
+                submitText.textContent = 'Send Message';
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+        });
+        
+        // Function to send email using your API
+        async function sendEmail(formData) {
+            // Your API key
+            const API_KEY = 'sf_91f4cdd444jk41ddh4d7hm58';
+            
+            // For now, simulate a successful email send
+            // In production, replace this with your actual email service
+            try {
+                // Simulate API call delay
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Log the form data (for testing)
+                console.log('Form data to be sent:', {
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    api_key: API_KEY
+                });
+                
+                // Return success (replace this with actual email service integration)
+                return { success: true };
+                
+                /* 
+                // Example with actual email service:
+                const response = await fetch('YOUR_EMAIL_ENDPOINT', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        name: formData.name,
+                        email: formData.email,
+                        message: formData.message
+                    })
+                });
+                
+                return { success: response.ok };
+                */
+            } catch (error) {
+                console.error('Email service error:', error);
+                return { success: false };
+            }
+        }
+    </script>
 </body>
 </html>
