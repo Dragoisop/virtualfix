@@ -82,6 +82,131 @@
             }
         }
         
+        /* Android device optimization */
+        @media (max-width: 480px) {
+            /* Hero section mobile optimization */
+            #home h1 {
+                font-size: 2.5rem !important;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            
+            #home p {
+                font-size: 1rem !important;
+                line-height: 1.5;
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Hero buttons mobile optimization */
+            #home .flex.flex-col a {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.875rem;
+                min-width: 180px;
+            }
+            
+            /* Navigation mobile optimization */
+            nav .text-2xl {
+                font-size: 1.25rem;
+            }
+            
+            /* Card mobile optimization */
+            .card-hover {
+                margin-bottom: 1rem;
+            }
+            
+            /* Button mobile optimization */
+            .bg-brand, .border-brand {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.875rem;
+            }
+            
+            /* Section padding mobile optimization */
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            /* Grid mobile optimization */
+            .grid {
+                gap: 1rem;
+            }
+            
+            /* Logo mobile optimization */
+            .w-9.h-9 {
+                width: 2rem;
+                height: 2rem;
+            }
+            
+            .w-10.h-10 {
+                width: 2.25rem;
+                height: 2.25rem;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            #home h1 {
+                font-size: 2rem !important;
+            }
+            
+            #home p {
+                font-size: 0.875rem !important;
+            }
+            
+            .text-4xl {
+                font-size: 1.75rem;
+            }
+            
+            .text-3xl {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Touch-friendly improvements for Android */
+        @media (max-width: 768px) {
+            /* Increase touch targets */
+            a, button {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Improve card touch areas */
+            .card-hover {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            /* Better spacing for mobile */
+            .space-y-4 > * + * {
+                margin-top: 1rem;
+            }
+            
+            .space-y-6 > * + * {
+                margin-top: 1.5rem;
+            }
+            
+            /* Optimize form inputs for mobile */
+            input, textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 0.75rem;
+            }
+            
+            /* Fix container overflow */
+            .max-w-6xl, .max-w-7xl, .max-w-4xl {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* Improve grid responsiveness */
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Better section spacing */
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+        
         /* Animated triangles */
         .triangle {
             position: fixed;
@@ -179,8 +304,8 @@
         }
         
         #portfolio .card-hover:hover {
-            transform: translateY(-12px) scale(1.08);
-            box-shadow: 0 30px 60px rgba(255, 204, 0, 0.25);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(255, 204, 0, 0.2);
         }
         
         /* Project card wrapper enhancement */
@@ -189,7 +314,7 @@
         }
         
         .project-card:hover {
-            transform: translateY(-12px) scale(1.08);
+            transform: translateY(-8px) scale(1.03);
         }
         
         /* Language icons animation */
@@ -234,9 +359,9 @@
     <nav class="fixed w-full z-50 glass-effect">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex items-center space-x-3">
-                    <img src="transparent logo.png" alt="VirtualFix Logo" class="w-9 h-9">
-                    <div class="text-2xl font-bold"><span class="text-white">Virtual</span><span class="text-brand">Fix</span></div>
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <img src="transparent logo.png" alt="VirtualFix Logo" class="w-8 h-8 sm:w-9 sm:h-9">
+                    <div class="text-xl sm:text-2xl font-bold"><span class="text-white">Virtual</span><span class="text-brand">Fix</span></div>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
@@ -255,8 +380,8 @@
             </div>
         </div>
         <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass-effect">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div id="mobile-menu" class="hidden md:hidden glass-effect border-t border-gray-700">
+            <div class="px-4 pt-4 pb-6 space-y-2">
                 <a href="#home" class="block px-3 py-2 hover:text-brand transition-colors">Home</a>
                 <a href="#services" class="block px-3 py-2 hover:text-brand transition-colors">Services</a>
                                  <a href="#portfolio" class="block px-3 py-2 hover:text-brand transition-colors">Projects</a>
@@ -267,7 +392,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center gradient-bg relative overflow-hidden">
+    <section id="home" class="min-h-screen flex items-center justify-center gradient-bg relative overflow-hidden px-4">
         <div class="absolute inset-0 bg-black opacity-20"></div>
         <div class="relative z-10 text-center px-4">
             <div class="animate-fade-in">
@@ -277,11 +402,11 @@
                 <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-2xl mx-auto">
                     Your brand deserves more than templates. We build digital originals
                 </p>
-                <div class="space-x-4">
-                    <a href="#services" class="bg-brand text-gray-900 px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-colors inline-block">
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+                    <a href="#services" class="bg-brand text-gray-900 px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-105 inline-block text-center w-full sm:w-auto min-w-[200px]">
                         Our Services
                     </a>
-                    <a href="#contact" class="border-2 border-brand text-brand px-8 py-3 rounded-full font-semibold hover:bg-brand hover:text-gray-900 transition-colors inline-block">
+                    <a href="#contact" class="border-2 border-brand text-brand px-8 py-4 rounded-full font-semibold hover:bg-brand hover:text-gray-900 transition-all duration-300 transform hover:scale-105 inline-block text-center w-full sm:w-auto min-w-[200px]">
                         Get a Quote
                     </a>
                 </div>
@@ -531,7 +656,7 @@
                             </div>
                             <div>
                                 <p class="font-semibold">Email</p>
-                                <p class="text-gray-300">hello@example.com</p>
+                                <p class="text-gray-300">virtualfixorg@gmail.com</p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
@@ -549,21 +674,11 @@
                             </div>
                             <div>
                                 <p class="font-semibold">Location</p>
-                                <p class="text-gray-300">San Francisco, CA</p>
+                                <p class="text-gray-300">Johar Town, Lahore, Pakistan</p>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-8">
-                        <h4 class="text-lg font-semibold mb-4 text-brand">Follow</h4>
-                        <div class="flex space-x-4">
-                            <a href="#" aria-label="LinkedIn" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-brand hover:text-gray-900 transition-colors">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="#" aria-label="Instagram" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-brand hover:text-gray-900 transition-colors">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
+
                 </div>
                 <div>
                     <form class="space-y-6">
@@ -590,10 +705,10 @@
      <footer class="bg-black border-t border-gray-800 py-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div class="flex items-center space-x-2">
-                <img src="transparent logo.png" alt="VirtualFix Logo" class="w-8 h-8">
-                <span class="font-semibold">VirtualFix</span>
+                <img src="transparent logo.png" alt="VirtualFix Logo" class="w-10 h-10">
+                <span class="font-semibold"><span class="text-white">Virtual</span><span class="text-brand">Fix</span></span>
             </div>
-                         <p class="text-gray-400">&copy; 2024 VirtualFix. All rights reserved.</p>
+                         <p class="text-gray-400">&copy; 2025 VirtualFix. All rights reserved.</p>
         </div>
     </footer>
 

@@ -158,7 +158,7 @@ window.addEventListener('scroll', () => {
 // Add enhanced hover effects for project cards and services cards
 document.querySelectorAll('.project-card, .card-hover').forEach(card => {
     card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-12px) scale(1.08)';
+        card.style.transform = 'translateY(-8px) scale(1.03)';
         card.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
     });
     
@@ -179,7 +179,7 @@ document.querySelectorAll('.project-card, .card-hover').forEach(card => {
         const rotateX = (y - centerY) / 15;
         const rotateY = (centerX - x) / 15;
         
-        card.style.transform = `translateY(-12px) scale(1.08) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        card.style.transform = `translateY(-8px) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
     
     card.addEventListener('mouseleave', () => {
