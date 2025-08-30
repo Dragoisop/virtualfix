@@ -77,45 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Form submission handling
-const contactForm = document.querySelector('form');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-    
-    // Simple validation
-    if (!name || !email || !message) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address');
-        return;
-    }
-    
-    // Simulate form submission
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-    
-    submitButton.textContent = 'Sending...';
-    submitButton.disabled = true;
-    
-    // Simulate API call
-    setTimeout(() => {
-        alert('Thank you for your message! I\'ll get back to you soon.');
-        contactForm.reset();
-        submitButton.textContent = originalText;
-        submitButton.disabled = false;
-    }, 2000);
-});
+// Form submission handling - REMOVED to prevent conflict with StaticForms
+// The contact form is now handled in the HTML file with StaticForms integration
 
 // Typing effect for hero section
 function typeWriter(element, text, speed = 100) {
@@ -333,7 +296,7 @@ document.querySelectorAll('.project-card').forEach(card => {
             <div class="space-y-6">
                 <div class="text-center">
                     <h2 class="text-2xl font-bold text-brand mb-2">${title}</h2>
-                    <div class="w-16 h-1 bg-brand mx-auto"></div>
+                    <div class="w-16 h-1 md:h-1 h-0.5 bg-brand mx-auto section-divider"></div>
                 </div>
                 
                 <div>

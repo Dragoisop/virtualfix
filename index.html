@@ -243,6 +243,21 @@
             }
         }
         
+        /* Modal divider optimization for mobile devices */
+        @media (max-width: 480px) {
+            .modal .section-divider {
+                height: 1px !important;
+                transform: scaleY(0.5);
+            }
+        }
+        
+        @media (max-width: 480px) and (min-resolution: 2dppx) {
+            .modal .section-divider {
+                height: 0.5px !important;
+                transform: scaleY(0.25);
+            }
+        }
+        
         /* Extra small devices */
         @media (max-width: 360px) {
             #home h1 {
@@ -842,22 +857,36 @@
 
                 </div>
                 <div>
-                    <form id="contactForm" class="space-y-6" method="POST" action="#" aria-label="Contact form">
+                    <form id="contactForm" class="space-y-6" method="POST" action="https://api.staticforms.xyz/submit" accept-charset="UTF-8" aria-label="Contact form">
+                        <input type="hidden" name="apiKey" value="sf_91f4cdd444jk41ddh4d7hm58" />
+                        <input type="hidden" name="accessKey" value="sf_91f4cdd444jk41ddh4d7hm58" />
+                        <input type="hidden" name="subject" value="New contact from VirtualFix website" />
+                        <input type="hidden" name="replyTo" value="virtualfixorg@gmail.com" />
+                        <input type="hidden" name="to" value="virtualfixorg@gmail.com" />
+                        
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" required>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" autocomplete="name" placeholder="Your name" required>
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" required>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" autocomplete="email" placeholder="you@example.com" required>
                         </div>
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" required></textarea>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" placeholder="How can we help?" required></textarea>
                         </div>
-                                                 <button type="submit" id="submitBtn" class="w-full bg-brand text-gray-900 py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.01]">
-                             <span id="submitText">Send Message</span>
-                         </button>
+                        
+                        <div class="hidden" aria-hidden="true">
+                            <label for="honeypot">Leave this field empty</label>
+                            <input id="honeypot" type="text" name="honeypot" tabindex="-1" autocomplete="off" />
+                        </div>
+                        
+                        <button type="submit" id="submitBtn" class="w-full bg-brand text-gray-900 py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.01]">
+                            <span id="submitText">Send Message</span>
+                        </button>
+                        
+                        <p class="form-status text-center" id="contact-status" role="status" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
@@ -894,19 +923,13 @@
     
     <!-- Contact Form Email Integration -->
     <script>
-        // Contact form handling with email API
+        // Contact form handling with StaticForms
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+            e.preventDefault(); // Prevent form from submitting naturally
             
             const submitBtn = document.getElementById('submitBtn');
             const submitText = document.getElementById('submitText');
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                message: document.getElementById('message').value
-            };
+            const formStatus = document.getElementById('contact-status');
             
             // Change button text to "Sent" and disable
             submitText.textContent = 'Sent';
@@ -914,18 +937,29 @@
             submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
             
             try {
-                // Send email using your API key
-                const response = await sendEmail(formData);
+                // Submit form to StaticForms using fetch
+                const formData = new FormData(this);
+                const response = await fetch('https://api.staticforms.xyz/submit', {
+                    method: 'POST',
+                    body: formData
+                });
                 
-                if (response.success) {
-                    // Keep button as "Sent" - success
-                    console.log('Message sent successfully');
+                if (response.ok) {
+                    // Success - keep button as "Sent"
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Keep button as "Sent" permanently
+                    console.log('Message sent successfully via StaticForms');
                 } else {
-                    // Reset button on failure
+                    // Failure - reset button
                     submitText.textContent = 'Send Message';
                     submitBtn.disabled = false;
                     submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-                    console.error('Failed to send message');
+                    formStatus.textContent = 'Failed to send message. Please try again.';
+                    formStatus.className = 'form-status text-center text-red-400';
+                    console.error('StaticForms error:', response.status);
                 }
             } catch (error) {
                 console.error('Error sending email:', error);
@@ -933,53 +967,10 @@
                 submitText.textContent = 'Send Message';
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                formStatus.textContent = 'An error occurred. Please try again later.';
+                formStatus.className = 'form-status text-center text-red-400';
             }
         });
-        
-        // Function to send email using your API
-        async function sendEmail(formData) {
-            // Your API key
-            const API_KEY = 'sf_91f4cdd444jk41ddh4d7hm58';
-            
-            // For now, simulate a successful email send
-            // In production, replace this with your actual email service
-            try {
-                // Simulate API call delay
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                // Log the form data (for testing)
-                console.log('Form data to be sent:', {
-                    name: formData.name,
-                    email: formData.email,
-                    message: formData.message,
-                    api_key: API_KEY
-                });
-                
-                // Return success (replace this with actual email service integration)
-                return { success: true };
-                
-                /* 
-                // Example with actual email service:
-                const response = await fetch('YOUR_EMAIL_ENDPOINT', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEY}`
-                    },
-                    body: JSON.stringify({
-                        name: formData.name,
-                        email: formData.email,
-                        message: formData.message
-                    })
-                });
-                
-                return { success: response.ok };
-                */
-            } catch (error) {
-                console.error('Email service error:', error);
-                return { success: false };
-            }
-        }
     </script>
 </body>
 </html>
