@@ -187,6 +187,217 @@ document.querySelectorAll('.project-card, .card-hover').forEach(card => {
     });
 });
 
+
+
+// Modal functionality for all cards
+const modalOverlay = document.getElementById('modal-overlay');
+const modalContent = document.getElementById('modal-content');
+const modalBody = document.getElementById('modal-body');
+const modalClose = document.getElementById('modal-close');
+
+// Function to open modal
+function openModal(content) {
+    modalBody.innerHTML = content;
+    modalOverlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    // Add animation
+    modalContent.style.transform = 'scale(0.9)';
+    modalContent.style.opacity = '0';
+    
+    setTimeout(() => {
+        modalContent.style.transform = 'scale(1)';
+        modalContent.style.opacity = '1';
+    }, 10);
+}
+
+// Function to close modal
+function closeModal() {
+    modalOverlay.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking overlay or close button
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+        closeModal();
+    }
+});
+
+modalClose.addEventListener('click', closeModal);
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modalOverlay.classList.contains('hidden')) {
+        closeModal();
+    }
+});
+
+// Project card modal functionality
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const title = card.querySelector('h3').textContent;
+        const description = card.querySelector('p').textContent;
+        const technologies = Array.from(card.querySelectorAll('.bg-gray-700')).map(tech => tech.textContent);
+        
+        // Define project-specific details for the modal
+        let features = [];
+        let liveLink = '';
+        let allTechnologies = [];
+        
+        // Set features, live link, and all technologies based on project title
+        if (title.includes('Next Venture')) {
+            features = [
+                'High-Performance Architecture',
+                'Headless CMS Integration',
+                'Seamless Authentication',
+                'Polished & Accessible UI'
+            ];
+            liveLink = 'https://ab-next-venture.vercel.app/';
+            allTechnologies = [
+                'Next.js 15',
+                'TypeScript',
+                'Tailwind CSS',
+                'Shadcn UI',
+                'Motion.dev',
+                'Auth.js',
+                'Sanity CMS',
+                'GROQ'
+            ];
+        } else if (title.includes('Zenith Academy')) {
+            features = [
+                'Content Lifecycle – Create, Consume, Rate',
+                'Secure Authentication with JWT & Bcrypt',
+                'Razorpay-Powered Payments',
+                'Cloud-Based Media Management',
+                'Animated UI with Motion.dev'
+            ];
+            liveLink = 'https://academy.aayushbharti.in/';
+            allTechnologies = [
+                'Express.js',
+                'MongoDB',
+                'Mongoose',
+                'JWT',
+                'Bcrypt',
+                'Razorpay',
+                'Cloud Storage',
+                'Motion.dev',
+                'RESTful API',
+                'Turborepo'
+            ];
+        } else if (title.includes('Snippix')) {
+            features = [
+                'Themes & Fonts',
+                'Language Detection',
+                'Export Options',
+                'Deep Customization',
+                'Resizable Canvas & Shortcuts'
+            ];
+            liveLink = 'https://snippix.vercel.app/';
+            allTechnologies = [
+                'React',
+                'TypeScript',
+                'Tailwind CSS',
+                'Vercel',
+                'Canvas API',
+                'Syntax Highlighting',
+                'Export Functionality',
+                'Responsive Design'
+            ];
+        }
+        
+        // Enhanced descriptions for each project
+        let enhancedDescription = '';
+        let projectType = '';
+        let developmentTime = '';
+        let targetAudience = '';
+        
+        if (title.includes('Next Venture')) {
+            enhancedDescription = 'A comprehensive startup pitch platform built with modern web technologies. This full-stack application provides entrepreneurs with a professional platform to showcase their business ideas, connect with investors, and manage their startup journey. Features include user authentication, content management, and a responsive design optimized for all devices.';
+            projectType = 'Full-Stack Web Application';
+            developmentTime = '4-6 weeks';
+            targetAudience = 'Entrepreneurs, Startups, Investors';
+        } else if (title.includes('Zenith Academy')) {
+            enhancedDescription = 'An innovative EdTech platform that revolutionizes online learning through interactive content and seamless user experience. Built with a robust backend and modern frontend technologies, it provides a comprehensive learning management system with secure payments, content creation tools, and progress tracking.';
+            projectType = 'Educational Technology Platform';
+            developmentTime = '6-8 weeks';
+            targetAudience = 'Students, Educators, Learning Institutions';
+        } else if (title.includes('Snippix')) {
+            enhancedDescription = 'A developer-focused tool for creating and sharing beautiful code snippets across social media platforms. Built with React and TypeScript, it offers extensive customization options including multiple themes, language detection, and various export formats. Perfect for developers who want to showcase their code with style.';
+            projectType = 'Developer Tool';
+            developmentTime = '3-4 weeks';
+            targetAudience = 'Developers, Programmers, Tech Content Creators';
+        }
+        
+        const modalContent = `
+            <div class="space-y-6">
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold text-brand mb-2">${title}</h2>
+                    <div class="w-16 h-1 bg-brand mx-auto"></div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 text-white">Project Overview</h3>
+                    <p class="text-gray-300 leading-relaxed">${enhancedDescription}</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Project Details</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-layer-group text-brand mr-3 w-5"></i>
+                                <div>
+                                    <p class="text-sm text-gray-400">Project Type</p>
+                                    <p class="text-gray-300">${projectType}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-brand mr-3 w-5"></i>
+                                <div>
+                                    <p class="text-sm text-gray-400">Development Time</p>
+                                    <p class="text-gray-300">${developmentTime}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-brand mr-3 w-5"></i>
+                                <div>
+                                    <p class="text-sm text-gray-400">Target Audience</p>
+                                    <p class="text-gray-300">${targetAudience}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Technologies Used</h3>
+                        <div class="flex flex-wrap gap-2">
+                            ${allTechnologies.map(tech => `<span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 text-white">Key Features</h3>
+                    <ul class="space-y-2">
+                        ${features.map(feature => `<li class="text-gray-300 flex items-start"><i class="fas fa-check text-brand mr-2 mt-1"></i>${feature}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="text-center pt-4">
+                    <a href="${liveLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-brand text-gray-900 px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all duration-300">
+                        <i class="fas fa-external-link-alt mr-2"></i> View Live Project
+                    </a>
+                </div>
+            </div>
+        `;
+        
+        openModal(modalContent);
+    });
+});
+
+
+
 // Smooth reveal animation for sections
 function revealOnScroll() {
     const reveals = document.querySelectorAll('section');

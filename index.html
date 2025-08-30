@@ -3,8 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agency - Web, Design & Video</title>
+    <title>VirtualFix - Web Development, Graphic Design & Video Editing Services</title>
+    <meta name="description" content="VirtualFix is a full-service creative agency specializing in web development, graphic design, and video editing. We build custom websites, create brand identities, and produce engaging video content for businesses.">
+    <meta name="keywords" content="web development, graphic design, video editing, website design, brand identity, SEO optimization, custom websites, digital agency">
+    <meta name="author" content="VirtualFix">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://virtualfix.org/">
+    <meta property="og:title" content="VirtualFix - Web Development, Graphic Design & Video Editing Services">
+    <meta property="og:description" content="Full-service creative agency specializing in web development, graphic design, and video editing. We build custom websites, create brand identities, and produce engaging video content.">
+    <meta property="og:image" content="https://virtualfix.org/transparent%20logo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://virtualfix.org/">
+    <meta property="twitter:title" content="VirtualFix - Web Development, Graphic Design & Video Editing Services">
+    <meta property="twitter:description" content="Full-service creative agency specializing in web development, graphic design, and video editing. We build custom websites, create brand identities, and produce engaging video content.">
+    <meta property="twitter:image" content="https://virtualfix.org/transparent%20logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://virtualfix.org/">
+    
     <link rel="icon" type="image/png" href="transparent logo.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "VirtualFix",
+        "url": "https://virtualfix.org",
+        "logo": "https://virtualfix.org/transparent%20logo.png",
+        "description": "Full-service creative agency specializing in web development, graphic design, and video editing services.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "San Francisco",
+            "addressRegion": "CA",
+            "addressCountry": "US"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-555-123-4567",
+            "contactType": "customer service",
+            "email": "virtualfixorg@gmail.com"
+        },
+        "sameAs": [
+            "https://linkedin.com/company/virtualfix",
+            "https://instagram.com/virtualfix"
+        ],
+        "serviceArea": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 37.7749,
+                "longitude": -122.4194
+            },
+            "geoRadius": "50000"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Web Development Services",
+        "provider": {
+            "@type": "Organization",
+            "name": "VirtualFix"
+        },
+        "description": "Custom website development, responsive design, and SEO optimization services.",
+        "offers": {
+            "@type": "Offer",
+            "price": "499",
+            "priceCurrency": "USD",
+            "description": "Starter package with 1-page website and SEO optimization"
+        }
+    }
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script>
@@ -286,6 +365,52 @@
             box-shadow: 0 25px 50px rgba(255, 204, 0, 0.2);
         }
         
+        /* Modal animations */
+        #modal-content {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        #modal-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        /* Make project cards clickable */
+        .project-card {
+            cursor: pointer;
+        }
+        
+        /* Add subtle click feedback for project cards only */
+        .project-card:active {
+            transform: scale(0.98);
+        }
+        
+        /* Mobile modal optimization */
+        @media (max-width: 640px) {
+            #modal-content {
+                margin: 0.5rem;
+                max-height: 95vh;
+            }
+            
+            #modal-body {
+                padding: 1rem;
+            }
+            
+            #modal-close {
+                top: 0.75rem;
+                right: 0.75rem;
+            }
+        }
+        
+        /* Hide scrollbar in modal */
+        #modal-content::-webkit-scrollbar {
+            display: none;
+        }
+        
+        #modal-content {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
         /* Enhanced card hover for services section */
         #services .card-hover {
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -360,15 +485,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center space-x-2 sm:space-x-3">
-                    <img src="transparent logo.png" alt="VirtualFix Logo" class="w-8 h-8 sm:w-9 sm:h-9">
+                    <img src="transparent logo.png" alt="VirtualFix - Web Development and Design Agency Logo" class="w-8 h-8 sm:w-9 sm:h-9">
                     <div class="text-xl sm:text-2xl font-bold"><span class="text-white">Virtual</span><span class="text-brand">Fix</span></div>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <a href="#home" class="nav-link hover:text-brand transition-colors">Home</a>
                         <a href="#services" class="nav-link hover:text-brand transition-colors">Services</a>
-                                                 <a href="#portfolio" class="nav-link hover:text-brand transition-colors">Projects</a>
                         <a href="#pricing" class="nav-link hover:text-brand transition-colors">Pricing</a>
+                        <a href="#portfolio" class="nav-link hover:text-brand transition-colors">Projects</a>
                         <a href="#contact" class="nav-link hover:text-brand transition-colors">Contact</a>
                     </div>
                 </div>
@@ -384,15 +509,15 @@
             <div class="px-4 pt-4 pb-6 space-y-2">
                 <a href="#home" class="block px-3 py-2 hover:text-brand transition-colors">Home</a>
                 <a href="#services" class="block px-3 py-2 hover:text-brand transition-colors">Services</a>
-                                 <a href="#portfolio" class="block px-3 py-2 hover:text-brand transition-colors">Projects</a>
                 <a href="#pricing" class="block px-3 py-2 hover:text-brand transition-colors">Pricing</a>
+                <a href="#portfolio" class="block px-3 py-2 hover:text-brand transition-colors">Projects</a>
                 <a href="#contact" class="block px-3 py-2 hover:text-brand transition-colors">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center gradient-bg relative overflow-hidden px-4">
+    <main id="home" class="min-h-screen flex items-center justify-center gradient-bg relative overflow-hidden px-4">
         <div class="absolute inset-0 bg-black opacity-20"></div>
         <div class="relative z-10 text-center px-4">
             <div class="animate-fade-in">
@@ -415,7 +540,7 @@
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
             <i class="fas fa-chevron-down text-2xl text-white"></i>
         </div>
-    </section>
+    </main>
 
     <!-- Services Section -->
     <section id="services" class="py-20 bg-black">
@@ -428,7 +553,7 @@
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Strategy, design and production under one roof to move your brand forward.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-[#1e1e1e] rounded-xl p-8 hover:bg-[#1e1e1e] transition-colors border border-gray-700 card-glass-wipe card-hover">
+                <article class="bg-[#1e1e1e] rounded-xl p-8 hover:bg-[#1e1e1e] transition-colors border border-gray-700 card-glass-wipe card-hover">
                     <div class="w-14 h-14 rounded-lg bg-brand text-gray-900 flex items-center justify-center mb-6">
                         <i class="fas fa-code text-2xl"></i>
                             </div>
@@ -440,8 +565,8 @@
                         <li><i class="fas fa-check text-brand mr-2"></i>Performance optimized</li>
                         <li><i class="fas fa-check text-brand mr-2"></i>SEO optimization</li>
                     </ul>
-                </div>
-                <div class="bg-[#1e1e1e] rounded-xl p-8 hover:bg-[#1e1e1e] transition-colors border border-gray-700 card-glass-wipe card-hover">
+                </article>
+                <article class="bg-[#1e1e1e] rounded-xl p-8 hover:bg-[#1e1e1e] transition-colors border border-gray-700 card-glass-wipe card-hover">
                     <div class="w-14 h-14 rounded-lg bg-brand text-gray-900 flex items-center justify-center mb-6">
                         <i class="fas fa-palette text-2xl"></i>
                     </div>
@@ -452,8 +577,8 @@
                         <li><i class="fas fa-check text-brand mr-2"></i>Social media creatives</li>
                         <li><i class="fas fa-check text-brand mr-2"></i>Pitch decks & print</li>
                     </ul>
-                </div>
-                <div class="bg-[#1e1e1e] rounded-xl p-8 hover:bg-[#1e1e1e] transition-colors border border-gray-700 card-glass-wipe card-hover">
+                </article>
+                <article class="bg-[#1e1e1e] rounded-xl p-8 hover:bg-[#1e1e1e] transition-colors border border-gray-700 card-glass-wipe card-hover">
                     <div class="w-14 h-14 rounded-lg bg-brand text-gray-900 flex items-center justify-center mb-6">
                         <i class="fas fa-video text-2xl"></i>
                     </div>
@@ -464,7 +589,7 @@
                         <li><i class="fas fa-check text-brand mr-2"></i>Ads & promos</li>
                         <li><i class="fas fa-check text-brand mr-2"></i>Animation & captions</li>
                     </ul>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -478,37 +603,53 @@
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Start small and scale when you need more firepower.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="rounded-2xl border border-gray-700 bg-[#1e1e1e] p-8 card-glass-wipe card-hover">
-                    <h3 class="text-xl font-semibold mb-2">Starter</h3>
-                    <p class="text-gray-400 mb-6">Best for MVPs and small projects</p>
-                    <p class="text-4xl font-bold mb-6"><span class="text-brand">$499</span></p>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><i class="fas fa-check text-brand mr-2"></i>1-page website</li>
-                        <li><i class="fas fa-check text-brand mr-2"></i>Basic brand kit</li>
-                        <li><i class="fas fa-check text-brand mr-2"></i>7-day delivery</li>
-                    </ul>
+                <div class="rounded-2xl border border-gray-700 bg-[#1e1e1e] p-8 card-glass-wipe card-hover flex flex-col">
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold mb-2">Starter</h3>
+                        <p class="text-gray-400 mb-6">Best for MVPs and small projects</p>
+                        <p class="text-4xl font-bold mb-6"><span class="text-brand">$499</span></p>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><i class="fas fa-check text-brand mr-2"></i>1-page website</li>
+                            <li><i class="fas fa-check text-brand mr-2"></i>Basic brand kit</li>
+                            <li><i class="fas fa-check text-brand mr-2"></i>7-day delivery</li>
+                            <li><i class="fas fa-check text-brand mr-2"></i>SEO optimization</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full bg-brand text-gray-900 py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center inline-block mt-6">
+                        Get a Quote
+                    </a>
                 </div>
-                <div class="rounded-2xl border-2 border-brand bg-[#222222] p-8 relative card-glass-wipe card-hover" style="padding-top: 2rem;">
+                <div class="rounded-2xl border-2 border-brand bg-[#222222] p-8 relative card-glass-wipe card-hover flex flex-col" style="padding-top: 2rem;">
                     <span class="absolute -top-2 right-6 bg-brand text-gray-900 text-xs font-bold px-3 py-1 rounded-full z-10">Popular</span>
-                    <h3 class="text-xl font-semibold mb-2">Growth</h3>
-                    <p class="text-gray-400 mb-6">For growing brands and shops</p>
-                    <p class="text-4xl font-bold mb-6"><span class="text-brand">$1499</span></p>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><i class="fas fa-check text-brand mr-2"></i>Multi-page website</li>
-                        <li><i class="fas fa-check text-brand mr-2"></i>Brand identity pack</li>
-                        <li><i class="fas fa-check text-brand mr-2"></i>1 promo video</li>
-                        <li><i class="fas fa-check text-brand mr-2"></i>SEO optimization</li>
-                    </ul>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold mb-2">Growth</h3>
+                        <p class="text-gray-400 mb-6">For growing brands and shops</p>
+                        <p class="text-4xl font-bold mb-6"><span class="text-brand">$1499</span></p>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><i class="fas fa-check text-brand mr-2"></i>Multi-page website</li>
+                            <li><i class="fas fa-check text-brand mr-2"></i>Brand identity pack</li>
+                            <li><i class="fas fa-check text-brand mr-2"></i>1 promo video</li>
+                            <li><i class="fas fa-check text-brand mr-2"></i>SEO optimization</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full bg-brand text-gray-900 py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center inline-block mt-6">
+                        Get a Quote
+                    </a>
                 </div>
-                <div class="rounded-2xl border border-gray-700 bg-[#1e1e1e] p-8 card-glass-wipe card-hover">
-                    <h3 class="text-xl font-semibold mb-2">Custom</h3>
-                    <p class="text-gray-400 mb-6">Tailored to your goals</p>
-                    <p class="text-4xl font-bold mb-6"><span class="text-brand">Let's talk</span></p>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><i class="fas fa-check text-brand mr-2"></i>Complex web apps</li>
-                        <li><i class="fas fa-check text-brand mr-2"></i>Design retainers</li>
-                        <li><i class="fas fa-check text-brand mr-2"></i>Full video production</li>
-                    </ul>
+                <div class="rounded-2xl border border-gray-700 bg-[#1e1e1e] p-8 card-glass-wipe card-hover flex flex-col">
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold mb-2">Custom</h3>
+                        <p class="text-gray-400 mb-6">Tailored to your goals</p>
+                        <p class="text-4xl font-bold mb-6"><span class="text-brand">Let's talk</span></p>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><i class="fas fa-check text-brand mr-2"></i>Complex web apps</li>
+                            <li><i class="fas fa-check text-brand mr-2"></i>Design retainers</li>
+                            <li><i class="fas fa-check text-brand mr-2"></i>Full video production</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full bg-brand text-gray-900 py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center inline-block mt-6">
+                        Get a Quote
+                    </a>
                 </div>
             </div>
         </div>
@@ -525,50 +666,48 @@
                 <div class="project-card group">
                     <div class="bg-[#1e1e1e] rounded-lg overflow-hidden shadow-lg card-glass-wipe card-hover">
                         <div class="h-48 bg-gradient-to-br from-zinc-800 to-black flex items-center justify-center">
-                            <i class="fas fa-laptop-code text-6xl text-brand"></i>
+                            <i class="fas fa-rocket text-6xl text-brand"></i>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">E-Commerce Site Redesign</h3>
-                            <p class="text-gray-300 mb-4">Modern storefront with 34% conversion uplift and blazing performance.</p>
+                            <h3 class="text-xl font-semibold mb-2">Next Venture - Startup Pitch Platform</h3>
+                            <p class="text-gray-300 mb-4">Full-stack startup pitch platform with high-performance architecture, seamless authentication, and polished UI/UX designed to scale and impress.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Next.js</span>
-                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Tailwind</span>
-                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Stripe</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Next.js 15</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">TypeScript</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Sanity CMS</span>
                             </div>
-                            <a href="#" class="text-brand hover:opacity-80 transition-colors"><i class="fas fa-external-link-alt"></i> View</a>
                         </div>
                     </div>
                 </div>
                 <div class="project-card group">
                     <div class="bg-[#1e1e1e] rounded-lg overflow-hidden shadow-lg card-glass-wipe card-hover">
                         <div class="h-48 bg-gradient-to-br from-zinc-800 to-black flex items-center justify-center">
-                            <i class="fas fa-palette text-6xl text-brand"></i>
+                            <i class="fas fa-graduation-cap text-6xl text-brand"></i>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Brand Identity Pack</h3>
-                            <p class="text-gray-300 mb-4">Logo, typography, social kit and launch creatives for fintech startup.</p>
+                            <h3 class="text-xl font-semibold mb-2">Zenith Academy - EdTech Platform</h3>
+                            <p class="text-gray-300 mb-4">Full-stack interactive EdTech platform enabling learning through engaging content, secure auth, seamless payments, and rich media management.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Branding</span>
-                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Figma</span>
-                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Illustrator</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Express.js</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">MongoDB</span>
+                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Razorpay</span>
                             </div>
-                            <a href="#" class="text-brand hover:opacity-80 transition-colors"><i class="fas fa-external-link-alt"></i> View</a>
                         </div>
                     </div>
                 </div>
                 <div class="project-card group">
                     <div class="bg-[#1e1e1e] rounded-lg overflow-hidden shadow-lg card-glass-wipe card-hover">
                         <div class="h-48 bg-gradient-to-br from-zinc-800 to-black flex items-center justify-center">
-                            <i class="fas fa-video text-6xl text-brand"></i>
+                            <i class="fas fa-code text-6xl text-brand"></i>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Product Launch Video</h3>
-                            <p class="text-gray-300 mb-4">30s ad with motion graphics, captions and SFX for paid social.</p>
+                            <h3 class="text-xl font-semibold mb-2">Snippix - Code Snippet Generator</h3>
+                            <p class="text-gray-300 mb-4">A powerful tool for sharing beautiful, customizable code snippets across social media. Supports multiple languages, themes, and export formats.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">After Effects</span>
-                                <span class="px-3 py-1 bg-gray-700 text-white text-sm rounded-full">Premiere Pro</span>
+                                <span class="px-3 py-2 bg-gray-700 text-white text-sm rounded-full">React</span>
+                                <span class="px-3 py-2 bg-gray-700 text-white text-sm rounded-full">TypeScript</span>
+                                <span class="px-3 py-2 bg-gray-700 text-white text-sm rounded-full">Tailwind</span>
                             </div>
-                            <a href="#" class="text-brand hover:opacity-80 transition-colors"><i class="fas fa-external-link-alt"></i> View</a>
                         </div>
                     </div>
                 </div>
@@ -681,7 +820,7 @@
 
                 </div>
                 <div>
-                    <form class="space-y-6">
+                    <form class="space-y-6" method="POST" action="#" aria-label="Contact form">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
                             <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" required>
@@ -702,15 +841,30 @@
     </section>
 
          <!-- Footer -->
-     <footer class="bg-black border-t border-gray-800 py-8">
+     <footer class="bg-black border-t border-gray-800 py-8" role="contentinfo">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div class="flex items-center space-x-2">
-                <img src="transparent logo.png" alt="VirtualFix Logo" class="w-10 h-10">
+                <img src="transparent logo.png" alt="VirtualFix - Web Development and Design Agency Logo" class="w-10 h-10">
                 <span class="font-semibold"><span class="text-white">Virtual</span><span class="text-brand">Fix</span></span>
             </div>
                          <p class="text-gray-400">&copy; 2025 VirtualFix. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Modal Overlay -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-2 sm:p-4">
+        <div id="modal-content" class="bg-[#1e1e1e] rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-700 relative mx-2">
+            <!-- Close Button -->
+            <button id="modal-close" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10" aria-label="Close modal">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <!-- Modal Content Container -->
+            <div id="modal-body" class="p-6">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
