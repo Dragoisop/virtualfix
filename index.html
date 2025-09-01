@@ -9,24 +9,35 @@
     <meta name="author" content="VirtualFix">
     <meta name="robots" content="index, follow">
     
+    <!-- Google-specific meta tags for logo display -->
+    <meta name="logo" content="https://virtualfix.cloud/transparent-logo.png">
+    <meta name="image" content="https://virtualfix.cloud/transparent-logo.png">
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://virtualfix.cloud/">
     <meta property="og:title" content="VirtualFix - Web Development, Graphic Design & Video Editing Services">
     <meta property="og:description" content="Full-service creative agency specializing in web development, graphic design, and video editing. We build custom websites, create brand identities, and produce engaging video content.">
-    <meta property="og:image" content="https://virtualfix.cloud/transparent%20logo.png">
+    <meta property="og:image" content="https://virtualfix.cloud/transparent-logo.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="VirtualFix Logo - Web Development and Design Agency">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://virtualfix.cloud/">
     <meta property="twitter:title" content="VirtualFix - Web Development, Graphic Design & Video Editing Services">
     <meta property="twitter:description" content="Full-service creative agency specializing in web development, graphic design, and video editing. We build custom websites, create brand identities, and produce engaging video content.">
-    <meta property="twitter:image" content="https://virtualfix.cloud/transparent%20logo.png">
+    <meta property="twitter:image" content="https://virtualfix.cloud/transparent-logo.png">
+    <meta property="twitter:image:alt" content="VirtualFix Logo - Web Development and Design Agency">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://virtualfix.cloud/">
     
-    <link rel="icon" type="image/png" href="transparent logo.png">
+    <!-- Favicon and app icons -->
+    <link rel="icon" type="image/png" href="transparent-logo.png">
+    <link rel="apple-touch-icon" href="transparent-logo.png">
+    <link rel="shortcut icon" href="transparent-logo.png">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -35,7 +46,14 @@
         "@type": "Organization",
         "name": "VirtualFix",
         "url": "https://virtualfix.cloud",
-        "logo": "https://virtualfix.cloud/transparent%20logo.png",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://virtualfix.cloud/transparent-logo.png",
+            "width": 512,
+            "height": 512,
+            "caption": "VirtualFix Logo"
+        },
+        "image": "https://virtualfix.cloud/transparent-logo.png",
         "description": "Full-service creative agency specializing in web development, graphic design, and video editing services.",
         "address": {
             "@type": "PostalAddress",
@@ -61,6 +79,25 @@
                 "longitude": -122.4194
             },
             "geoRadius": "50000"
+        }
+    }
+    </script>
+    
+    <!-- Website Schema for Google Search -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "VirtualFix",
+        "url": "https://virtualfix.cloud",
+        "description": "Full-service creative agency specializing in web development, graphic design, and video editing services.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "VirtualFix",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://virtualfix.cloud/transparent-logo.png"
+            }
         }
     }
     </script>
@@ -522,7 +559,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center space-x-2 sm:space-x-3">
-                    <img src="transparent logo.png" alt="VirtualFix - Web Development and Design Agency Logo" class="w-8 h-8 sm:w-9 sm:h-9">
+                    <img src="transparent-logo.png" alt="VirtualFix - Web Development and Design Agency Logo" class="w-8 h-8 sm:w-9 sm:h-9">
                     <div class="text-xl sm:text-2xl font-bold"><span class="text-white">Virtual</span><span class="text-brand">Fix</span></div>
                 </div>
                 <div class="hidden md:block">
@@ -897,7 +934,7 @@
      <footer class="bg-black border-t border-gray-800 py-8" role="contentinfo">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div class="flex items-center space-x-2">
-                <img src="transparent logo.png" alt="VirtualFix - Web Development and Design Agency Logo" class="w-10 h-10">
+                <img src="transparent-logo.png" alt="VirtualFix - Web Development and Design Agency Logo" class="w-10 h-10">
                 <span class="font-semibold"><span class="text-white">Virtual</span><span class="text-brand">Fix</span></span>
             </div>
                          <p class="text-gray-400">&copy; 2025 VirtualFix. All rights reserved.</p>
