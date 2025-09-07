@@ -485,6 +485,15 @@
             scrollbar-width: none;
         }
         
+        /* Hide page scrollbars on desktop while keeping scroll functional */
+        html, body {
+            -ms-overflow-style: none; /* IE and old Edge */
+            scrollbar-width: none;   /* Firefox */
+        }
+        body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge (Chromium) */
+        }
+        
         /* Enhanced card hover for services section */
         #services .card-hover {
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
