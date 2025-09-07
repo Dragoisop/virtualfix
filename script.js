@@ -422,3 +422,35 @@ loadingStyle.textContent = `
     }
 `;
 document.head.appendChild(loadingStyle);
+
+// Count-up animation for hero metrics
+function animateCountUp(element, target, duration = 1200) {
+    const start = 0;
+    const startTime = performance.now();
+    function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+        const value = Math.floor(start + (target - start) * eased);
+        element.textContent = value.toString();
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.countup');
+    if (counters.length) {
+        const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-target') || '0', 10);
+                    animateCountUp(el, target);
+                    obs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.6 });
+        counters.forEach(c => io.observe(c));
+    }
+});
