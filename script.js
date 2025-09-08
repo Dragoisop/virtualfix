@@ -406,22 +406,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Add loading animation
 window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
+    // Mark page as loaded and hide loader overlay
+    document.documentElement.classList.add('page-loaded');
 });
 
 // Add CSS for loading animation
-const loadingStyle = document.createElement('style');
-loadingStyle.textContent = `
-    body {
-        opacity: 0;
-        transition: opacity 0.5s ease-in;
-    }
-    
-    body.loaded {
-        opacity: 1;
-    }
-`;
-document.head.appendChild(loadingStyle);
+// Remove previous body opacity loader to avoid black flash
 
 // Count-up animation for hero metrics
 function animateCountUp(element, target, duration = 1200) {
