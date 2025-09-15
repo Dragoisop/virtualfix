@@ -199,9 +199,10 @@ document.addEventListener('keydown', (e) => {
 // Project card modal functionality
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', () => {
-        const title = card.querySelector('h3').textContent;
-        const description = card.querySelector('p').textContent;
-        const technologies = Array.from(card.querySelectorAll('.bg-gray-700')).map(tech => tech.textContent);
+        const img = card.querySelector('img');
+        const title = img.alt;
+        const description = '';
+        const technologies = [];
         
         // Define project-specific details for the modal
         let features = [];
