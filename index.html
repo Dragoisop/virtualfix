@@ -552,34 +552,16 @@
             50% { transform: translateY(-10px); }
         }
         
-        /* Loading overlay */
-        #page-loader {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.4s ease;
+
+        
+        /* Prevent flash of unstyled content */
+        body {
+            visibility: hidden;
         }
-        .page-loaded #page-loader { opacity: 0; pointer-events: none; }
-        .loader-ring { width: 48px; height: 48px; border: 3px solid rgba(255,255,255,0.15); border-top-color: #FFCC00; border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="bg-black text-white overflow-x-hidden">
-    <!-- Page Loader -->
-    <div id="page-loader">
-        <div class="text-center">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <img src="transparent-logo.png" alt="VirtualFix Logo" class="w-8 h-8">
-                <div class="text-xl font-bold"><span class="text-white">Virtual</span><span class="text-brand">Fix</span></div>
-            </div>
-            <div class="loader-ring mx-auto"></div>
-            <p class="mt-3 text-gray-400 text-sm">Loading VirtualFix...</p>
-        </div>
-    </div>
+
     <!-- Grid background -->
     <div class="grid-bg"></div>
     <!-- Animated background triangles -->
@@ -1133,6 +1115,11 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.visibility = 'visible';
+        });
+    </script>
     <script src="script.js"></script>
     
     <!-- Contact Form Email Integration -->
