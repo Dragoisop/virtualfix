@@ -210,63 +210,53 @@ document.querySelectorAll('.project-card').forEach(card => {
         let allTechnologies = [];
         
         // Set features, live link, and all technologies based on project title
-        if (title.includes('Next Venture')) {
+        if (title.includes('Dante NYC')) {
             features = [
-                'High-Performance Architecture',
-                'Headless CMS Integration',
-                'Seamless Authentication',
-                'Polished & Accessible UI'
+                'Elegant Restaurant Design',
+                'Online Reservation System',
+                'Menu Display & Gallery',
+                'Mobile-Responsive Layout'
             ];
-            liveLink = 'https://ab-next-venture.vercel.app/';
+            liveLink = 'https://www.dante-nyc.com/';
             allTechnologies = [
-                'Next.js 15',
-                'TypeScript',
-                'Tailwind CSS',
-                'Shadcn UI',
-                'Motion.dev',
-                'Auth.js',
-                'Sanity CMS',
-                'GROQ'
+                'HTML5',
+                'CSS3',
+                'JavaScript',
+                'Responsive Design',
+                'SEO Optimization',
+                'Performance Tuning'
             ];
-        } else if (title.includes('Zenith Academy')) {
+        } else if (title.includes('Cozy Cafe')) {
             features = [
-                'Content Lifecycle – Create, Consume, Rate',
-                'Secure Authentication with JWT & Bcrypt',
-                'Razorpay-Powered Payments',
-                'Cloud-Based Media Management',
-                'Animated UI with Motion.dev'
+                'Online Menu & Ordering',
+                'Multiple Location Support',
+                'E-commerce Integration',
+                'Customer Reviews System'
             ];
-            liveLink = 'https://academy.aayushbharti.in/';
+            liveLink = 'https://cozycafeltd.co.uk/';
             allTechnologies = [
-                'Express.js',
-                'MongoDB',
-                'Mongoose',
-                'JWT',
-                'Bcrypt',
-                'Razorpay',
-                'Cloud Storage',
-                'Motion.dev',
-                'RESTful API',
-                'Turborepo'
+                'HTML5',
+                'CSS3',
+                'JavaScript',
+                'Responsive Design',
+                'Custom Animations',
+                'SEO Optimization'
             ];
-        } else if (title.includes('Snippix')) {
+        } else if (title.includes('Oasis Cafe')) {
             features = [
-                'Themes & Fonts',
-                'Language Detection',
-                'Export Options',
-                'Deep Customization',
-                'Resizable Canvas & Shortcuts'
+                'Restaurant Menu Display',
+                'Event Booking System',
+                'Catering Services',
+                'Contact & Location Info'
             ];
-            liveLink = 'https://snippix.vercel.app/';
+            liveLink = 'https://theoasiscafe.com/';
             allTechnologies = [
-                'React',
-                'TypeScript',
-                'Tailwind CSS',
-                'Vercel',
-                'Canvas API',
-                'Syntax Highlighting',
-                'Export Functionality',
-                'Responsive Design'
+                'HTML5',
+                'CSS3',
+                'Bootstrap',
+                'JavaScript',
+                'Responsive Design',
+                'Contact Forms'
             ];
         }
         
@@ -276,21 +266,21 @@ document.querySelectorAll('.project-card').forEach(card => {
         let developmentTime = '';
         let targetAudience = '';
         
-        if (title.includes('Next Venture')) {
-            enhancedDescription = 'A comprehensive startup pitch platform built with modern web technologies. This full-stack application provides entrepreneurs with a professional platform to showcase their business ideas, connect with investors, and manage their startup journey. Features include user authentication, content management, and a responsive design optimized for all devices.';
-            projectType = 'Full-Stack Web Application';
-            developmentTime = '4-6 weeks';
-            targetAudience = 'Entrepreneurs, Startups, Investors';
-        } else if (title.includes('Zenith Academy')) {
-            enhancedDescription = 'An innovative EdTech platform that revolutionizes online learning through interactive content and seamless user experience. Built with a robust backend and modern frontend technologies, it provides a comprehensive learning management system with secure payments, content creation tools, and progress tracking.';
-            projectType = 'Educational Technology Platform';
-            developmentTime = '6-8 weeks';
-            targetAudience = 'Students, Educators, Learning Institutions';
-        } else if (title.includes('Snippix')) {
-            enhancedDescription = 'A developer-focused tool for creating and sharing beautiful code snippets across social media platforms. Built with React and TypeScript, it offers extensive customization options including multiple themes, language detection, and various export formats. Perfect for developers who want to showcase their code with style.';
-            projectType = 'Developer Tool';
+        if (title.includes('Dante NYC')) {
+            enhancedDescription = 'An elegant fine dining restaurant website showcasing sophisticated design and seamless user experience. Features include online reservations, menu displays, gallery sections, and location information. The site reflects the upscale dining experience with premium aesthetics and smooth navigation.';
+            projectType = 'Restaurant Website';
+            developmentTime = '2-3 weeks';
+            targetAudience = 'Fine Dining Customers, Food Enthusiasts';
+        } else if (title.includes('Cozy Cafe')) {
+            enhancedDescription = 'A comprehensive coffee shop website built with HTML, CSS, and JavaScript, featuring online ordering, multiple location support, and e-commerce capabilities. The site provides customers with easy access to menus, locations, and online ordering functionality for a seamless coffee shop experience.';
+            projectType = 'E-commerce Website';
             developmentTime = '3-4 weeks';
-            targetAudience = 'Developers, Programmers, Tech Content Creators';
+            targetAudience = 'Coffee Lovers, Local Customers';
+        } else if (title.includes('Oasis Cafe')) {
+            enhancedDescription = 'A modern restaurant and catering website featuring menu displays, event booking capabilities, and comprehensive service information. Built with responsive design principles to ensure optimal viewing across all devices while maintaining the warm, welcoming atmosphere of the establishment.';
+            projectType = 'Restaurant & Catering Website';
+            developmentTime = '2-3 weeks';
+            targetAudience = 'Restaurant Customers, Event Planners';
         }
         
         const modalContent = `
