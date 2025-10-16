@@ -931,65 +931,38 @@
                 <div class="w-24 h-1 md:h-1 h-0.5 bg-brand mx-auto section-divider"></div>
                 <p class="text-gray-300 text-lg mt-4">Let's work together on your next project</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6 text-brand">Contact Information</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-gray-900">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Email</p>
-                                <p class="text-gray-300">virtualfixorg@gmail.com</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-gray-900">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Location</p>
-                                <p class="text-gray-300">Manhattan</p>
-                            </div>
-                        </div>
+            <div class="max-w-md mx-auto">
+                <form id="contactForm" class="space-y-6" method="POST" action="https://api.staticforms.xyz/submit" accept-charset="UTF-8" aria-label="Contact form">
+                    <input type="hidden" name="apiKey" value="sf_91f4cdd444jk41ddh4d7hm58" />
+                    <input type="hidden" name="accessKey" value="sf_91f4cdd444jk41ddh4d7hm58" />
+                    <input type="hidden" name="subject" value="New contact from VirtualFix website" />
+                    <input type="hidden" name="replyTo" value="virtualfixorg@gmail.com" />
+                    <input type="hidden" name="to" value="virtualfixorg@gmail.com" />
+                    
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" autocomplete="name" placeholder="Your name" required>
                     </div>
-
-                </div>
-                <div>
-                    <form id="contactForm" class="space-y-6" method="POST" action="https://api.staticforms.xyz/submit" accept-charset="UTF-8" aria-label="Contact form">
-                        <input type="hidden" name="apiKey" value="sf_91f4cdd444jk41ddh4d7hm58" />
-                        <input type="hidden" name="accessKey" value="sf_91f4cdd444jk41ddh4d7hm58" />
-                        <input type="hidden" name="subject" value="New contact from VirtualFix website" />
-                        <input type="hidden" name="replyTo" value="virtualfixorg@gmail.com" />
-                        <input type="hidden" name="to" value="virtualfixorg@gmail.com" />
-                        
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" autocomplete="name" placeholder="Your name" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" autocomplete="email" placeholder="you@example.com" required>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" placeholder="How can we help?" required></textarea>
-                        </div>
-                        
-                        <div class="hidden" aria-hidden="true">
-                            <label for="honeypot">Leave this field empty</label>
-                            <input id="honeypot" type="text" name="honeypot" tabindex="-1" autocomplete="off" />
-                        </div>
-                        
-                        <button type="submit" id="submitBtn" class="w-full bg-brand text-gray-900 py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.01]">
-                            <span id="submitText">Send Message</span>
-                        </button>
-                        
-                        <p class="form-status text-center" id="contact-status" role="status" aria-live="polite"></p>
-                    </form>
-                </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" autocomplete="email" placeholder="you@example.com" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 ring-brand text-white" placeholder="How can we help?" required></textarea>
+                    </div>
+                    
+                    <div class="hidden" aria-hidden="true">
+                        <label for="honeypot">Leave this field empty</label>
+                        <input id="honeypot" type="text" name="honeypot" tabindex="-1" autocomplete="off" />
+                    </div>
+                    
+                    <button type="submit" id="submitBtn" class="w-full bg-brand text-gray-900 py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.01]">
+                        <span id="submitText">Send Message</span>
+                    </button>
+                    
+                    <p class="form-status text-center" id="contact-status" role="status" aria-live="polite"></p>
+                </form>
             </div>
         </div>
     </section>
